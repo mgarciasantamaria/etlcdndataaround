@@ -1,16 +1,14 @@
 #!/usr/bin/env python
 #_*_ codig: utf8 _*_
-json_path="C:/Users/mgarcia/DOCKER/PROD/DataAnalytics/src/json/vars.json"
-log_Path="C:/Users/mgarcia/DOCKER/PROD/DataAnalytics/src/Logs" # Test
-Downloads_Path="C:/Users/mgarcia/DOCKER/PROD/DataAnalytics/src/S3Download"
+json_path="./json/vars.json"
+log_Path="./Logs" # Test
+Downloads_Path="./S3Download"
 
 data_base_connect="host=10.10.130.38 dbname=cdntest user=vodtransfers3 password=vod-2022" #use (main) (functions:extract_xml_data, Duration_Transform)
 profile={   #Use (main)
-    'mpd': [4, 'Dash', 'm4s'],
-    'vmxmpd': [4, 'Dash', 'm4s'],
-    'm3u8' : [6, 'Hls', 'ts'],
-    'vmxm3u8' : [6, 'Hls', 'ts'],
-    'ism' : [3, 'SmoothStreams']
+    'index.mpd': 4,
+    'index.m3u8' : 6,
+    'Manifest' : 3
     }
 Bucket_logs='testaurora' #Use (functions:Dowload_Logs)
 Bucket_logs_old='dbeventlogsold' #Use (functions:Dowload_Logs)

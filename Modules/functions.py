@@ -29,16 +29,16 @@ def Download_Logs(DATE_LOG):
                 s3_client.download_fileobj(Bucket_logs, log_Key, data)
             objects['Objects'].append({'Key': log_Key,})
             list_objects.append(f"{Downloads_Path}/{log_Key}")
-            s3_client.copy_object(
-                Bucket=Bucket_logs_old,
-                CopySource=f'{Bucket_logs}/{log_Key}',
-                Key=f'{log_Key}'
-                )
+            #s3_client.copy_object(
+                # Bucket=Bucket_logs_old,
+                # CopySource=f'{Bucket_logs}/{log_Key}',
+                # Key=f'{log_Key}'
+                # )
             
-        s3_client.delete_objects(
-                Bucket=Bucket_logs,
-                Delete=objects
-            )
+        # s3_client.delete_objects(
+        #         Bucket=Bucket_logs,
+        #         Delete=objects
+        #     )
         return list_objects
     else:
         text_print=f"Logs not found"

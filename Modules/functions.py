@@ -39,16 +39,16 @@ def Download_Logs(DATE_LOG):
             objects['Objects'].append({'Key': log_Key,}) #Se agrega al dicionario el nombre del objeto descargado.
             list_objects.append(f"{Downloads_Path}/{log_Key}") #Se agrega la ruta completa del objeto descargado en el folder local.
             #Se realiza un a copia del objeto en el bucket definido en la constante Bucket_logs_old.
-            #s3_client.copy_object( 
-                # Bucket=Bucket_logs_old, #Se establece el bucket de destino.
-                # CopySource=f'{Bucket_logs}/{log_Key}', #Se establece la ruta del objeto en el bucket de origen.
-                # Key=f'{log_Key}' #Se establece el nombre del objeto en el destino.
-                # )
+            s3_client.copy_object( 
+                Bucket=Bucket_logs_old, #Se establece el bucket de destino.
+                CopySource=f'{Bucket_logs}/{log_Key}', #Se establece la ruta del objeto en el bucket de origen.
+                Key=f'{log_Key}' #Se establece el nombre del objeto en el destino.
+                )
         #Se eliminan los objetos en el bucket de origen.    
-        # s3_client.delete_objects(
-        #         Bucket=Bucket_logs, #Se establce el bucket.
-        #         Delete=objects #Se establce la lista de objetos a eliminar.
-        #     )
+        s3_client.delete_objects(
+                Bucket=Bucket_logs, #Se establce el bucket.
+                Delete=objects #Se establce la lista de objetos a eliminar.
+            )
         return list_objects #Retorna la lista de objetos cada uno con su ruta en el folder local.
     else:
         text_print=f"Logs not found" #Se define el texto a registrar en el log de eventos.
